@@ -1,3 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.column {
+    flex-direction: column;
+  }
+  &.row {
+    flex-direction: row;
+  }
+  &.column-reverse {
+    flex-direction: column-reverse;
+  }
+  &.row-reverse {
+    flex-direction: row-reverse;
+  }
+}
+
 .traffic-light {
   display: flex;
   background-color: black;
@@ -24,25 +43,28 @@
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(173, 2, 2);
 
   &.active {
+    background-color: red;
     box-shadow: 0 0 10px 5px red;
   }
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: rgb(175, 175, 0);
 
   &.active {
+    background-color: yellow;
     box-shadow: 0 0 10px 5px yellow;
   }
 }
 
 .green {
-  background-color: green;
-  
+  background-color: rgb(2, 79, 2);
+
   &.active {
-    box-shadow: 0 0 10px 5px green;
+    background-color: rgb(1, 171, 15);
+    box-shadow: 0 0 10px 5px rgb(1, 171, 15);
   }
 }

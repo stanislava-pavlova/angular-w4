@@ -1,8 +1,18 @@
-<div
-  class="traffic-light"
-  [ngClass]="{ horizontal: isHorizontal, vertical: !isHorizontal }"
->
-  <div class="red" [ngClass]="{ active: lightColor === 'red' }"></div>
-  <div class="yellow" [ngClass]="{ active: lightColor === 'yellow' }"></div>
-  <div class="green" [ngClass]="{ active: lightColor === 'green' }"></div>
+<div class="container" [ngClass]="additionalClasses">
+  <div class="test"></div>
+  <div
+    class="traffic-light"
+    [ngClass]="{ horizontal: isHorizontal, vertical: !isHorizontal }"
+  >
+    <div class="red" [ngClass]="{ active: lightColor === 'red' }"></div>
+    <div class="yellow" [ngClass]="{ active: lightColor === 'yellow' }"></div>
+    <div class="green" [ngClass]="{ active: lightColor === 'green' }"></div>
+  </div>
+  <button
+    class="intersection-button"
+    [disabled]="isButtonDisabled"
+    (click)="handleIntersectionClick()"
+  >
+    Пресечи
+  </button>
 </div>

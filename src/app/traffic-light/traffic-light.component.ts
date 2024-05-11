@@ -11,4 +11,26 @@ import { CommonModule } from '@angular/common';
 export class TrafficLightComponent {
   @Input() lightColor!: string;
   @Input() isHorizontal!: boolean;
+  @Input() additionalClasses: string = '';
+
+  isButtonDisabled: boolean = false;
+  crossingStatus: string = '';
+
+  constructor() {
+    console.log('clas', this.additionalClasses);
+  }
+
+  ngOnChanges() {
+    if (this.lightColor === 'red') {
+      this.isButtonDisabled = true;
+    } else {
+      this.isButtonDisabled = false;
+    }
+  }
+
+  handleIntersectionClick() {
+    if (this.lightColor === 'yellow') {
+      alert('Неправилно пресичане!');
+    }
+  }
 }
