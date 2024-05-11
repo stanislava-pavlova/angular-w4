@@ -1,0 +1,8 @@
+<div
+  class="traffic-light"
+  [ngClass]="{ horizontal: isHorizontal, vertical: !isHorizontal }"
+>
+  <div class="red" [ngClass]="{ active: lightColor === 'red' }"></div>
+  <div class="yellow" [ngClass]="{ active: lightColor === 'yellow' }"></div>
+  <div class="green" [ngClass]="{ active: lightColor === 'green' }"></div>
+</div>
