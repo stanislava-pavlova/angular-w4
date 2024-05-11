@@ -19,28 +19,29 @@ export class AppComponent implements OnInit, OnDestroy {
   verticalLightColor: string = 'green';
   horizontalLightColor: string = 'red';
 
-  constructor() {}
-
   ngOnInit(): void {
+    this.startLightsInterval();
+  }
+
+  startLightsInterval() {
     interval(5000)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.horizontalLightColor = 'yellow';
-        setTimeout(() => {
-          this.horizontalLightColor = 'green';
-          setTimeout(() => {
-            this.horizontalLightColor = 'red';
-          }, 5000);
-        }, 2000);
-
-        this.verticalLightColor = 'yellow';
-        setTimeout(() => {
-          this.verticalLightColor = 'red';
-          setTimeout(() => {
-            this.verticalLightColor = 'green';
-          }, 5000);
-        }, 2000);
+        this.switchLights();
       });
+  }
+
+  switchLights() {
+    this.horizontalLightColor = 'yellow';
+    this.verticalLightColor = 'yellow';
+    setTimeout(() => {
+      this.horizontalLightColor = 'green';
+      this.verticalLightColor = 'red';
+      setTimeout(() => {
+        this.horizontalLightColor = 'red';
+        this.verticalLightColor = 'green';
+      }, 5000);
+    }, 2000);
   }
 
   ngOnDestroy() {
