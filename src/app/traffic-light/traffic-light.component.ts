@@ -16,10 +16,6 @@ export class TrafficLightComponent {
   isButtonDisabled: boolean = false;
   crossingStatus: string = '';
 
-  constructor() {
-    console.log('clas', this.additionalClasses);
-  }
-
   ngOnChanges() {
     if (this.lightColor === 'red') {
       this.isButtonDisabled = true;
