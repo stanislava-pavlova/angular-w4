@@ -45,10 +45,12 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.verticalLightColor = 'yellow';
     this.horizontalLightColor = 'yellow';
+    this.clearLightsInterval();
 
     setTimeout(() => {
       this.verticalLightColor = newVerticalLightColor;
       this.horizontalLightColor = newHorizontalLightColor;
+      this.startLightsInterval();
     }, 2000);
   }
 
