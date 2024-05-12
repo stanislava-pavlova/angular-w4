@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { interval, Subject } from 'rxjs';
 import { TrafficLightComponent } from './traffic-light/traffic-light.component';
-import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,37 +13,66 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'junction';
 
-  private destroy$: Subject<boolean> = new Subject<boolean>();
+  private mainInterval: any;
   verticalLightColor: string = 'green';
   horizontalLightColor: string = 'red';
+  emergencyMode: boolean = false;
 
   ngOnInit(): void {
     this.startLightsInterval();
   }
 
-  startLightsInterval() {
-    interval(5000)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.switchLights();
-      });
+  clearLightsInterval() {
+    clearInterval(this.mainInterval);
   }
 
-  switchLights() {
-    this.horizontalLightColor = 'yellow';
-    this.verticalLightColor = 'yellow';
-    setTimeout(() => {
-      this.horizontalLightColor = 'green';
-      this.verticalLightColor = 'red';
-      setTimeout(() => {
-        this.horizontalLightColor = 'red';
-        this.verticalLightColor = 'green';
+  startLightsInterval() {
+    if (!this.emergencyMode) {
+      this.mainInterval = setInterval(() => {
+        const newVerticalLightColor =
+          this.verticalLightColor === 'red' ? 'green' : 'red';
+        const newHorizontalLightColor =
+          this.horizontalLightColor === 'red' ? 'green' : 'red';
+
+        this.changeToYellow(newVerticalLightColor, newHorizontalLightColor);
       }, 5000);
+    }
+  }
+
+  changeToYellow(
+    newVerticalLightColor: string,
+    newHorizontalLightColor: string
+  ) {
+    this.verticalLightColor = 'yellow';
+    this.horizontalLightColor = 'yellow';
+
+    setTimeout(() => {
+      this.verticalLightColor = newVerticalLightColor;
+      this.horizontalLightColor = newHorizontalLightColor;
     }, 2000);
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+  handleEmergency() {
+    if (!this.emergencyMode) {
+      this.emergencyMode = true;
+      this.horizontalLightColor = 'yellow';
+      this.verticalLightColor = 'yellow';
+      this.clearLightsInterval();
+
+      setTimeout(() => {
+        this.emergencyMode = false;
+        this.resetLights();
+        this.startLightsInterval();
+      }, 10000);
+    }
+  }
+
+  resetLights() {
+    this.verticalLightColor = 'red';
+    this.horizontalLightColor = 'green';
+  }
+
+  ngOnDestroy(): void {
+    this.clearLightsInterval();
   }
 }

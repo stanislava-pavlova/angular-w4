@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4rem;
 
   &.column {
     flex-direction: column;
@@ -22,7 +23,6 @@
   background-color: black;
   justify-content: space-between;
   padding: 0.5rem;
-  margin: 4rem;
   gap: 1rem;
 }
 
@@ -32,6 +32,10 @@
 
 .vertical {
   flex-direction: column;
+}
+
+.none{
+  visibility: hidden;
 }
 
 .red,

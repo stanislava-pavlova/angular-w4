@@ -3,6 +3,7 @@
     <app-traffic-light
       [isHorizontal]="false"
       [lightColor]="verticalLightColor"
+      [additionalClasses]="'column'"
     ></app-traffic-light>
   </div>
 
@@ -10,10 +11,23 @@
     <app-traffic-light
       [isHorizontal]="true"
       [lightColor]="horizontalLightColor"
+      [additionalClasses]="'row-reverse'"
     ></app-traffic-light>
+
+    <div class="button-container">
+      <button
+        class="btn"
+        (click)="handleEmergency()"
+        [disabled]="emergencyMode"
+      >
+        Авария
+      </button>
+    </div>
+
     <app-traffic-light
       [isHorizontal]="true"
       [lightColor]="horizontalLightColor"
+      [additionalClasses]="'row'"
     ></app-traffic-light>
   </div>
 
@@ -21,6 +35,7 @@
     <app-traffic-light
       [isHorizontal]="false"
       [lightColor]="verticalLightColor"
+      [additionalClasses]="'column-reverse'"
     ></app-traffic-light>
   </div>
 </div>

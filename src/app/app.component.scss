@@ -14,53 +14,26 @@
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+
+  .btn {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+
+    &:disabled {
+      background-color: lightgray;
+      border-color: darkgray;
+      color: darkgray;
+      cursor: not-allowed;
+    }
+  }
 }
-
-// .traffic-light {
-//   display: flex;
-//   background-color: black;
-//   justify-content: space-between;
-//   padding: 0.5rem;
-//   margin: 4rem;
-//   gap: 1rem;
-// }
-
-// .horizontal {
-//   flex-direction: row;
-// }
-
-// .vertical {
-//   flex-direction: column;
-// }
-
-// .red,
-// .yellow,
-// .green {
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-// }
-
-// .red {
-//   background-color: red;
-// }
-
-// .yellow {
-//   background-color: yellow;
-// }
-
-// .green {
-//   background-color: green;
-// }
-
-// .red.active {
-//   box-shadow: 0 0 10px 5px red;
-// }
-
-// .yellow.active {
-//   box-shadow: 0 0 10px 5px yellow;
-// }
-
-// .green.active {
-//   box-shadow: 0 0 10px 5px green;
-// }
