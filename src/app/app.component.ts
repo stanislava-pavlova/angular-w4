@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'junction';
 
   private mainInterval: any;
+  private blinkInterval: any;
   verticalLightColor: string = 'green';
   horizontalLightColor: string = 'red';
   emergencyMode: boolean = false;
@@ -61,8 +62,14 @@ export class AppComponent implements OnInit, OnDestroy {
       this.verticalLightColor = 'yellow';
       this.clearLightsInterval();
 
+      this.blinkInterval = setInterval(() => {
+        this.horizontalLightColor = this.verticalLightColor =
+          this.horizontalLightColor === 'yellow' ? '' : 'yellow';
+      }, 500);
+
       setTimeout(() => {
         this.emergencyMode = false;
+        clearInterval(this.blinkInterval);
         this.resetLights();
         this.startLightsInterval();
       }, 10000);
